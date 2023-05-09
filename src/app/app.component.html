@@ -1,56 +1,9 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-      <img src="../assets/images/icona-cibando.png" class="logo">
-       Cibando</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#"><i class="pi pi-home"></i> Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="pi pi-book"></i> Ricette</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="pi pi-envelope"></i> Contatti</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<ngb-carousel *ngIf="images">
-
-	<ng-template ngbSlide *ngFor="let image of images">
-		<div class="picsum-img-wrapper">
-			<img [src]="percorsoFoto + image.id + '.jpg' " [alt]="image.label" />
-		</div>
-		<div class="carousel-caption">
-			<h3>{{ image.label }}</h3>
-		</div>
-	</ng-template>
-
-</ngb-carousel>
-
-
+<app-header></app-header>
+<app-carousel></app-carousel>
 <div class="contenitore">
-  <h2>Benvenuti su Cibando</h2>
-  <p class="paragrafo">
+  <h2 [ngClass]="evidenziato ? 'testoEvidenziato' : '' " (click)="onEvidenziato()" style="cursor: pointer;">Benvenuti su Cibando</h2>
+  <p class="paragrafo" [ngStyle]="{'background-color': evidenziato === true ? 'yellow' : ''}">
     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente quam consectetur voluptatem quas nihil. Ut necessitatibus labore, autem laborum voluptas earum tenetur harum fugiat sint vitae soluta, doloribus voluptate? Magni aspernatur asperiores temporibus quas rerum quasi blanditiis porro minima quam soluta, voluptatem excepturi sunt labore tempore animi et cumque nemo, beatae eveniet optio culpa repellendus! Porro quas nemo nam quidem explicabo labore, numquam, obcaecati incidunt error aliquid sequi minima laborum perferendis! Adipisci deleniti eum ipsum. Quo quam sint hic. Molestiae repellat inventore deleniti reiciendis ad impedit culpa odio libero consequuntur, modi ipsum eius maiores aliquid repudiandae numquam mollitia natus aliquam? Cupiditate voluptates sed sequi atque ipsum suscipit architecto ipsa fugiat saepe! Natus repudiandae aliquid obcaecati, quod, laborum architecto iusto doloribus iste animi quam a distinctio beatae temporibus reiciendis odit? A repellat asperiores quaerat ut quam eligendi suscipit tempore repudiandae at ex pariatur sit, labore minus impedit cupiditate accusamus culpa voluptatibus ad, ullam rem accusantium. Veniam inventore explicabo neque optio natus earum doloremque atque ad, aut saepe sed, labore blanditiis numquam alias rerum adipisci vitae molestiae ea ratione rem. Quis nihil libero maiores natus distinctio non? Molestias, deleniti repellat impedit quia voluptas eius quisquam dicta odio optio autem delectus enim nemo aliquid obcaecati repellendus numquam atque quae eum facere molestiae! Dignissimos ea, eaque quae, adipisci omnis quas esse sunt nihil aspernatur, molestiae tempora voluptatum. Eos expedita, perspiciatis amet asperiores ducimus enim aliquid quod quam
   </p>
-</div>
-
-<div [style]="'background-color: ' + colore">Ecco il div  del colore</div>
-<input type="text" [(ngModel)]="coloreScelto"><button (click)="onChangeColor()">Cambia Colore</button> valore della variabile: {{coloreScelto}}
-<br><br>
-
-<div id="contenitore-switch" [ngSwitch]="colore">
-  <div *ngSwitchCase="'green'">Questo DIV comparirà solamente se il colore scelto sarà verde</div>
-  <div *ngSwitchCase="'red'">Questo DIV comparirà solamente se il colore scelto sarà rosso</div>
-  <div *ngSwitchCase="'yellow'">Questo DIV comparirà solamente se il colore scelto sarà giallo</div>
-  <div *ngSwitchDefault>Questo DIV comparirà solamente se non è stato scelto nessun colore</div>
 </div>
 <router-outlet></router-outlet>

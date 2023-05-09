@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,21 +7,26 @@ import { Component, Input } from '@angular/core';
 })
 export class AppComponent {
   title = 'cibando';
+  evidenziato = false;
 
-  images = [
-    { id: 1, label: 'Spaghetti al sugo' },
-    { id: 2, label: 'Tagliata di manzo' },
-    { id: 3, label: 'Tiramisù' },
-  ];
+  // onEvidenziato() {
+  //   if(this.evidenziato === true){
+  //     this.evidenziato = false;
+  //   } else {
+  //     this.evidenziato = true;
+  //   }
+  // }
 
-  percorsoFoto = '../assets/images/imageBg-';
+  // onEvidenziato() {
+  //   if(this.evidenziato){
+  //     this.evidenziato = false;
+  //   } else {
+  //     this.evidenziato = true;
+  //   }
+  // }
 
-
-coloreScelto = "green";
-
-colore = "grey";
-
-  onChangeColor(){
-    this.colore = this.coloreScelto;
+  onEvidenziato() {
+      this.evidenziato = !this.evidenziato;
   }
+
 }

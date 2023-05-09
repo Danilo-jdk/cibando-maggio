@@ -37,10 +37,20 @@
 
 
 <div class="contenitore">
-  <h2>App di esempio</h2>
-  <p class="paragrafo">ecco il testo dentro al <span>paragrafo</span>
+  <h2>Benvenuti su Cibando</h2>
+  <p class="paragrafo">
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente quam consectetur voluptatem quas nihil. Ut necessitatibus labore, autem laborum voluptas earum tenetur harum fugiat sint vitae soluta, doloribus voluptate? Magni aspernatur asperiores temporibus quas rerum quasi blanditiis porro minima quam soluta, voluptatem excepturi sunt labore tempore animi et cumque nemo, beatae eveniet optio culpa repellendus! Porro quas nemo nam quidem explicabo labore, numquam, obcaecati incidunt error aliquid sequi minima laborum perferendis! Adipisci deleniti eum ipsum. Quo quam sint hic. Molestiae repellat inventore deleniti reiciendis ad impedit culpa odio libero consequuntur, modi ipsum eius maiores aliquid repudiandae numquam mollitia natus aliquam? Cupiditate voluptates sed sequi atque ipsum suscipit architecto ipsa fugiat saepe! Natus repudiandae aliquid obcaecati, quod, laborum architecto iusto doloribus iste animi quam a distinctio beatae temporibus reiciendis odit? A repellat asperiores quaerat ut quam eligendi suscipit tempore repudiandae at ex pariatur sit, labore minus impedit cupiditate accusamus culpa voluptatibus ad, ullam rem accusantium. Veniam inventore explicabo neque optio natus earum doloremque atque ad, aut saepe sed, labore blanditiis numquam alias rerum adipisci vitae molestiae ea ratione rem. Quis nihil libero maiores natus distinctio non? Molestias, deleniti repellat impedit quia voluptas eius quisquam dicta odio optio autem delectus enim nemo aliquid obcaecati repellendus numquam atque quae eum facere molestiae! Dignissimos ea, eaque quae, adipisci omnis quas esse sunt nihil aspernatur, molestiae tempora voluptatum. Eos expedita, perspiciatis amet asperiores ducimus enim aliquid quod quam
   </p>
-  ecco un <span>altro</span> testo
 </div>
 
+<div [style]="'background-color: ' + colore">Ecco il div  del colore</div>
+<input type="text" [(ngModel)]="coloreScelto"><button (click)="onChangeColor()">Cambia Colore</button> valore della variabile: {{coloreScelto}}
+<br><br>
+
+<div id="contenitore-switch" [ngSwitch]="colore">
+  <div *ngSwitchCase="'green'">Questo DIV comparirà solamente se il colore scelto sarà verde</div>
+  <div *ngSwitchCase="'red'">Questo DIV comparirà solamente se il colore scelto sarà rosso</div>
+  <div *ngSwitchCase="'yellow'">Questo DIV comparirà solamente se il colore scelto sarà giallo</div>
+  <div *ngSwitchDefault>Questo DIV comparirà solamente se non è stato scelto nessun colore</div>
+</div>
 <router-outlet></router-outlet>

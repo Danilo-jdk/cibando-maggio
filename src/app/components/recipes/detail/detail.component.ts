@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class DetailComponent implements OnInit{
   ricetta: Recipe;
+  percorsoDifficolta = '../../../../assets/images/difficolta-';
 
   constructor(
     private recipeService: RecipeService,
@@ -19,7 +20,7 @@ export class DetailComponent implements OnInit{
     ){}
 
     ngOnInit(): void {
-      this.onGetRecipe2();
+      this.onGetRecipe();
     }
 
 

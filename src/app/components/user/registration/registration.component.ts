@@ -29,9 +29,19 @@ constructor(private userService: UserService, private router: Router){}
 
     const user = {nome: this.form.value.name, email: this.form.value.email};
 
-    this.userService.datiUtente.next(user);
+    const utente = this.form.value;
 
-    this.router.navigate(['home']);
+    this.userService.insertUser(utente).subscribe({
+      next: (res) => {
+        console.log(res);
+
+        this.userService.datiUtente.next(user);
+        this.router.navigate(['home']);
+      },
+      error: (err) => console.log(err)
+    })
+
+
   }
 
   convalidaPassword(): boolean{

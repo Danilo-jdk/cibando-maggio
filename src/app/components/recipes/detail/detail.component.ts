@@ -32,7 +32,7 @@ export class DetailComponent implements OnInit{
       // converto in numero
       const idN = Number(id);
 
-      this.recipeService.getRecipe(idN).subscribe({
+      this.recipeService.getRecipe(id).subscribe({
         next: (res) => {
           this.ricetta = res;
           console.log('ecco la ricetta trovata ' + res.title);
@@ -52,7 +52,7 @@ export class DetailComponent implements OnInit{
         // converto in numero
        const idNumerico = Number(id);
 
-        this.recipeService.getRecipe(idNumerico).subscribe(res => this.ricetta = res);
+        this.recipeService.getRecipe(id).subscribe(res => this.ricetta = res);
       })
     }
 

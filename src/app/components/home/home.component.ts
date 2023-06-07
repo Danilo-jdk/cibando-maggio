@@ -43,10 +43,12 @@ export class HomeComponent implements OnInit{
 
     let titolo = titoletto;
 
-    this.modalService.open(content, {ariaLabelledBy: 'modal registration', size: 'lg', centered: true}).result.then(
+    this.modalService.open(content, {ariaLabelledBy: 'modal registration', size: 'lg', centered: true}).result
+    .then(
       (res) => {
         console.log('azione da eseguire, ecco il titolo arrivato: ', titolo)
-      }).catch((res) => {
+      })
+      .catch((res) => {
         console.log('nessuna azione da eseguire')
       })
   }

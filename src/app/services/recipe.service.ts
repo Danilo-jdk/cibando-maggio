@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Recipe } from '../models/recipe.model';
 import { RECIPES } from '../mocks/recipe.mock';
-import { Observable, of } from 'rxjs';
+import { Observable, of, delay } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -19,6 +19,11 @@ export class RecipeService {
       return this.http.get<Recipe[]>(`${this.apiBaseUrl}/`);
     }
 
+
+    getRecipesAsync() {
+       return this.http.get<Recipe[]>(`${this.apiBaseUrl}/`);
+     }
+
     // versione con Mock
     // getRecipe(id: number): Observable<Recipe | undefined> {
     //   const recipe = RECIPES.find(ricetta => ricetta._id === id);
@@ -28,6 +33,11 @@ export class RecipeService {
     getRecipe(id: string): Observable<Recipe> {
       return this.http.get<Recipe>(`${this.apiBaseUrl}/${id}`);
     }
+
+    createRecipe(ricetta: Recipe): Observable<Recipe> {
+      return this.http.post<Recipe>(`${this.apiBaseUrl}/`, ricetta);
+    }
+
 
 
 }

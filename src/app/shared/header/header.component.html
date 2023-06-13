@@ -15,10 +15,28 @@
           <a class="nav-link" routerLink="ricette"><i class="pi pi-book"></i> Ricette </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="registrazione"><i class="pi pi-user"></i> Registrazione</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link"><i class="pi pi-envelope"></i> Contatti</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav" *ngIf="!auth.isLogged()">
+        <li class="nav-item" >
+          <a class="nav-link" routerLink="login"><i class="pi pi-user"></i> Accedi</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav" *ngIf="auth.isLogged()">
+        <li class="nav-item" >
+          <span class="nav-link nome">Ciao {{user.name}} - </span>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link" routerLink="profilo"><i class="pi pi-user"></i> Profilo</a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link" routerLink="ricette/nuova-ricetta"><i class="pi pi-book"></i> Nuova ricetta</a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link" (click)="logout()"><i class="pi pi-user"></i> ESCI</a>
         </li>
       </ul>
     </div>

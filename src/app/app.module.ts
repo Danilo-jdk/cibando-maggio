@@ -8,6 +8,8 @@ import { PasswordModule } from 'primeng/password';
 import { DividerModule } from 'primeng/divider';
 import { PaginatorModule } from 'primeng/paginator';
 import { HttpClientModule } from '@angular/common/http';
+import { ToastModule } from 'primeng/toast';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 
 import { AppComponent } from './app.component';
@@ -19,6 +21,9 @@ import { RecipeCardComponent } from './shared/recipe-card/recipe-card.component'
 import { DetailComponent } from './components/recipes/detail/detail.component';
 import { RecipesListComponent } from './components/recipes/recipes-list/recipes-list.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
+import { LoginComponent } from './components/user/login/login.component';
+import { ProfileComponent } from './components/user/profile/profile.component';
+import { NewRecipeComponent } from './components/recipes/new-recipe/new-recipe.component';
 
 
 @NgModule({
@@ -31,7 +36,10 @@ import { RegistrationComponent } from './components/user/registration/registrati
     RecipeCardComponent,
     DetailComponent,
     RecipesListComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    LoginComponent,
+    ProfileComponent,
+    NewRecipeComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +51,9 @@ import { RegistrationComponent } from './components/user/registration/registrati
     PasswordModule,
     DividerModule,
     PaginatorModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastModule,
+    CKEditorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

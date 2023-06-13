@@ -38,3 +38,13 @@ h3 {
 .p-inputtext, .p-password-input{
   width: 100%!important;
 }
+
+.descrizione .ck-editor__editable {
+  min-height: 200px!important;
+  max-height: 200px!important;
+}
+
+.card-text span p {
+  display: inline;
+  margin-right: 5px;
+}

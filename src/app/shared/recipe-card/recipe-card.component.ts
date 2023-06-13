@@ -1,6 +1,8 @@
 import { Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 import { Recipe } from 'src/app/models/recipe.model';
 import { RecipeService } from 'src/app/services/recipe.service';
+import { UserService } from 'src/app/services/user.service';
+import { take, first, Observable, map } from 'rxjs';
 
 @Component({
   selector: 'app-recipe-card',
@@ -16,10 +18,37 @@ export class RecipeCardComponent implements OnInit {
  ricettePerPagina = 4;
  totaleRicette: number;
 
- constructor(private recipeService: RecipeService){}
+ ruolo: any;
+
+ totRicette: Recipe[];
+
+
+ recipes$: Observable<Recipe[]> = this.recipeService.getRecipesAsync().pipe(
+  map(response => response.filter(ricettaFiltrata => ricettaFiltrata.difficulty < 5)),
+  map (res => this.totRicette = res)
+  );
+
+
+ constructor(private recipeService: RecipeService, private userService: UserService){}
+
 
  ngOnInit(): void {
-  this.recipeService.getRecipes().subscribe({
+  // if(JSON.parse(localStorage.getItem('user')) !== null){
+  //   this.userService.userRole.subscribe({
+  //     next: res => this.ruolo = res
+  //   })
+  // }
+  this.userService.userRole.subscribe({
+    next: res => this.ruolo = res
+  });
+
+
+  this.recipeService.getRecipes().pipe(
+    map(response => response.filter(ricettaFiltrata => ricettaFiltrata.difficulty < 3)),
+    map (res => this.totRicette = res),
+    //unsubscribe
+    first()
+  ).subscribe({
     // il next verrà usato se la chiamata andrà a buon fine
     next: (res) => {
       this.recipes = res;

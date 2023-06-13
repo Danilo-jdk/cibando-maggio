@@ -1,14 +1,19 @@
 <div id="container-paginatore" *ngIf="pag != 'home'">
-  <p-paginator (onPageChange)="paginate($event)" [rows]="ricettePerPagina" [totalRecords]="totaleRicette"></p-paginator>
+  <p-paginator (onPageChange)="paginate($event)" [rows]="ricettePerPagina" [totalRecords]="totRicette.length"></p-paginator>
 </div>
 
-<div class="container-card" *ngFor="let recipe of recipes | slice: (page * ricettePerPagina) - ricettePerPagina : page * ricettePerPagina">
+<div class="container-card" *ngFor="let recipe of recipes$ | async | slice: (page * ricettePerPagina) - ricettePerPagina : page * ricettePerPagina">
   <div class="card">
     <div class="card-image" [ngStyle]="{'background-image': 'url(' + recipe.image + ')'}" (click)="inviaTitolo(recipe.title, recipe.difficulty, true)" ></div>
     <div class="card-body">
       <h5 class="card-title">{{recipe.title}}</h5>
-      <p class="card-text">{{recipe.description | slice: 0:accorciaDescrizione(recipe.description)}} ...</p>
+      <p class="card-text">
+        <span [innerHTML]="recipe.description | slice: 0:accorciaDescrizione(recipe.description)"></span>...
+      </p>
       <a class="btn btn-primary" routerLink="dettaglio/{{recipe.title}}/{{recipe._id}}">Visualizza</a>
+      <button class="btn btn-delete" *ngIf="ruolo === 'admin'">
+        <i class="pi pi-trash" aria-hidden="true"></i>
+      </button>
     </div>
   </div>
 </div>

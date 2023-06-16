@@ -3,6 +3,8 @@ import { Recipe } from 'src/app/models/recipe.model';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { UserService } from 'src/app/services/user.service';
 import { take, first, Observable, map } from 'rxjs';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-recipe-card',
@@ -10,6 +12,7 @@ import { take, first, Observable, map } from 'rxjs';
   styleUrls: ['./recipe-card.component.scss']
 })
 export class RecipeCardComponent implements OnInit {
+
   recipes: Recipe[];
  @Output() messaggio = new EventEmitter();
   @Input() pag;
@@ -29,7 +32,7 @@ export class RecipeCardComponent implements OnInit {
   );
 
 
- constructor(private recipeService: RecipeService, private userService: UserService){}
+ constructor(private recipeService: RecipeService, private userService: UserService, private sanitizer: DomSanitizer){}
 
 
  ngOnInit(): void {
@@ -41,7 +44,6 @@ export class RecipeCardComponent implements OnInit {
   this.userService.userRole.subscribe({
     next: res => this.ruolo = res
   });
-
 
   this.recipeService.getRecipes().pipe(
     map(response => response.filter(ricettaFiltrata => ricettaFiltrata.difficulty < 3)),
@@ -60,6 +62,42 @@ export class RecipeCardComponent implements OnInit {
     }
   })
 }
+
+  //  // Sanitizzazione del contenuto HTML
+  //  getSanitizedHTML(html: string): string {
+  //   const sanitizedHTML = this.sanitizer.bypassSecurityTrustHtml(html);
+  //    const slicedHTML = this.accorciaDescrizioneNuova(sanitizedHTML.toString());
+  //   return this.sanitizer.bypassSecurityTrustHtml(slicedHTML) as string;
+  // }
+
+  // accorciaDescrizioneNuova(descrizione):string {
+  //   const lunghezzaMassima = 198;
+  //   if(descrizione.length <= lunghezzaMassima){
+  //     return descrizione.slice(0, 198);
+  //   } else {
+  //     let ultimaPosizioneSpazio = descrizione.indexOf(' ', lunghezzaMassima);
+  //     return descrizione.slice(0, ultimaPosizioneSpazio);
+  //   }
+  //  }
+
+
+     // Sanitizzazione del contenuto HTML
+  getSanitizedHTML(descrizione: string): SafeHtml {
+    const tagliaDescrizione = this.accorciaDescrizioneNuova(descrizione);
+    const sanitizedDescription = this.sanitizer.bypassSecurityTrustHtml(tagliaDescrizione);
+    return sanitizedDescription;
+  }
+
+  // Funzione per accorciare la descrizione
+  accorciaDescrizioneNuova(descrizione: string): string {
+    const lunghezzaMassima = 198;
+    if (descrizione.length <= lunghezzaMassima) {
+      return descrizione.slice(0, lunghezzaMassima);
+    } else {
+      const ultimaPosizioneSpazio = descrizione.lastIndexOf(' ', lunghezzaMassima);
+      return descrizione.slice(0, ultimaPosizioneSpazio);
+    }
+  }
 
  inviaTitolo(titolo: string, diff: number, pubblicato: boolean){
 

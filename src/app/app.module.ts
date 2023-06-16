@@ -6,24 +6,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { PasswordModule } from 'primeng/password';
 import { DividerModule } from 'primeng/divider';
-import { PaginatorModule } from 'primeng/paginator';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastModule } from 'primeng/toast';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-
+import { RecipesModule } from './components/recipes/recipes.module';
 
 import { AppComponent } from './app.component';
 import { CarouselComponent } from './shared/carousel/carousel.component';
 import { HeaderComponent } from './shared/header/header.component';
-import { RecipesComponent } from './components/recipes/recipes.component';
+
 import { HomeComponent } from './components/home/home.component';
-import { RecipeCardComponent } from './shared/recipe-card/recipe-card.component';
-import { DetailComponent } from './components/recipes/detail/detail.component';
-import { RecipesListComponent } from './components/recipes/recipes-list/recipes-list.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
-import { NewRecipeComponent } from './components/recipes/new-recipe/new-recipe.component';
 
 
 @NgModule({
@@ -31,15 +26,10 @@ import { NewRecipeComponent } from './components/recipes/new-recipe/new-recipe.c
     AppComponent,
     CarouselComponent,
     HeaderComponent,
-    RecipesComponent,
     HomeComponent,
-    RecipeCardComponent,
-    DetailComponent,
-    RecipesListComponent,
     RegistrationComponent,
     LoginComponent,
     ProfileComponent,
-    NewRecipeComponent
   ],
   imports: [
     BrowserModule,
@@ -50,10 +40,10 @@ import { NewRecipeComponent } from './components/recipes/new-recipe/new-recipe.c
     ReactiveFormsModule,
     PasswordModule,
     DividerModule,
-    PaginatorModule,
     HttpClientModule,
     ToastModule,
     CKEditorModule,
+    RecipesModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

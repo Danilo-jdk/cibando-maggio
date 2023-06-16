@@ -8,8 +8,9 @@
     <div class="card-body">
       <h5 class="card-title">{{recipe.title}}</h5>
       <p class="card-text">
-        <span [innerHTML]="recipe.description | slice: 0:accorciaDescrizione(recipe.description)"></span>...
+        <span [innerHTML]="getSanitizedHTML(recipe.description)"></span>
       </p>
+      <div>Ruolo {{ruolo}}</div>
       <a class="btn btn-primary" routerLink="dettaglio/{{recipe.title}}/{{recipe._id}}">Visualizza</a>
       <button class="btn btn-delete" *ngIf="ruolo === 'admin'">
         <i class="pi pi-trash" aria-hidden="true"></i>
